@@ -3,7 +3,13 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'https://conduit.productionready.io/api';
+let API_ROOT = 'https://conduit.productionready.io/api';
+if ("API_ROOT" in process.env) {
+  let API_ROOT = process.env.API_ROOT;
+  console.log('The API_ROOT is set using ', process.env.API_ROOT);
+}
+
+// const API_ROOT = 'http://localhost:8000/api/';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
